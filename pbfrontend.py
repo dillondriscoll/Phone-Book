@@ -1,7 +1,7 @@
 from tkinter import*
 from pbbackend import Database
 
-Database=Database()
+Database=Database("phone.db")
 
 #Button logic
 def get_selected_row(event): #event handler for selecting an entry

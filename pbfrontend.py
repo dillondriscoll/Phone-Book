@@ -1,5 +1,7 @@
 from tkinter import*
-import pbbackend
+from pbbackend import Database
+
+Database=Database()
 
 #Button logic
 def get_selected_row(event): #event handler for selecting an entry
@@ -16,24 +18,24 @@ def get_selected_row(event): #event handler for selecting an entry
     e4.insert(END,selected_tuple[4])
 def view_command():  
     list1.delete(0,END)
-    for row in pbbackend.view():
+    for row in Database.view():
         list1.insert(END,row)
 def search_command():
     list1.delete(0,END)
-    for row in pbbackend.search(firstName_text.get(),lastName_text.get(),location_text.get(),number_text.get()):
+    for row in Database.search(firstName_text.get(),lastName_text.get(),location_text.get(),number_text.get()):
         list1.insert(END,row)
 
 def add_command():
-    pbbackend.insert(firstName_text.get(),lastName_text.get(),location_text.get(),number_text.get())
+    Database.insert(firstName_text.get(),lastName_text.get(),location_text.get(),number_text.get())
     list1.delete(0,END)
     list1.insert(END,(firstName_text.get(),lastName_text.get(),location_text.get(),number_text.get()))
 
 def delete_command(): 
-    pbbackend.delete(selected_tuple[0])
+    Database.delete(selected_tuple[0])
     view_command()
 
 def update_command():
-    pbbackend.update(selected_tuple[0],firstName_text.get(),lastName_text.get(),location_text.get(),number_text.get())
+    Database.update(selected_tuple[0],firstName_text.get(),lastName_text.get(),location_text.get(),number_text.get())
     view_command()
 
 
